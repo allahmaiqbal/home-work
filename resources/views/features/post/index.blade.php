@@ -29,13 +29,13 @@
                           <p class="text-end">
                             <span @class([
                                 'badge',
-                                'text-bg-warning' => $post->published_at == null ,
-                                'text-bg-success' =>  $post->published_at !== null ,
+                                'text-bg-success' => !$post->is_published() ,
+                                'text-bg-warning' => $post->is_published() ,
                             
                             ]);>
 
                             {{-- {{ $post->published_at == null ? 'text-bg-warning':'text-bg-success '}}"> --}}
-                              @if ($post->published_at==null)
+                              @if ($post->is_published())
                                 Not
                                   
                               @endif 
@@ -44,7 +44,8 @@
                             </span>
                           </p>
                         </div>
-                        <h5 class="card-title">{{$post->title }}</h5>
+                        <h5 class = "card-title">{{$post->title }}</h5>
+                        <p class = "card-text-end"> Posted By {{ $post->author->name }} </p>
                         <p class="card-text">{{ $post->content }}</p>
                     </div>
                     <div class="card-footer">

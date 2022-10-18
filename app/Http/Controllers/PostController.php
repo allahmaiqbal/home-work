@@ -21,6 +21,7 @@ class PostController extends Controller
     //     ->paginate();
         
          $post_query = Post::query();
+         $post_query->with('author');
 
         if(request('orderBy')=== 'oldest'){
             $post_query->oldest('created_at');

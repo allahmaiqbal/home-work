@@ -16,4 +16,19 @@ class Post extends Model
         'content',
         'published_at',
     ];
+
+   /*== Relationship start here ==*/
+    public function author()
+    {
+       return $this->belongsTo(User::class,'user_id');
+    } 
+    /*== Relationship end here==*/
+
+   /*== Custom method start here==*/
+   public function is_published():bool
+   {
+    return $this->published_at == null;
+   }
+   /*== Custom method end here==*/
+
 }
