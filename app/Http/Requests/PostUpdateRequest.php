@@ -6,7 +6,7 @@ use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostStoreRequest extends FormRequest
+class PostUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class PostStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check();
+        return true;
     }
 
     /**
@@ -26,37 +26,25 @@ class PostStoreRequest extends FormRequest
     public function rules()
     {
         return [
+        
             'title' => 'required|string|max:191',
             'content' => 'required|string|max:5000',
             'is_published' => 'required|boolean',
-            'slug'=>'',
-            'published_at'=>'',
-            'user_id'=>''
+            'slug' => '',
+            'published_at' => '',
+            
+           
         ];
-
-        
     }
+
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => Str::uniqueSlug(Post::class, $this->title, 'slug'),
-            'published_at' => $this->isPublished === '0' ? null : now(),
-            'user_id' => auth()->id(),
+            'published_at' => $this->is_published !== '0' ? now(): null, 
+            'slug' => Str::uniqueSlug(Post::class, $this->title, 'slug'),  
         ]);
     }
 
-    // public function messages()
-    // {
-    //     return [
-    //         'title.required' => 'Title must be needed', 
-            
-    //     ];
-    // }
+    
 
-    // public function attributes()
-    // {
-    //     return [
-    //         'content' => 'email address',
-    //     ];
-    // }
 }
