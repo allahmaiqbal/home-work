@@ -26,23 +26,36 @@
                     {{-- <img src="..." class="card-img-top" alt="..."> --}}
                     <div class="card-body">
                         <div>
-                          <p class="text-end">
-                            <span @class([
-                                'badge',
-                                'text-bg-success' => !$post->is_published() ,
-                                'text-bg-warning' => $post->is_published() ,
-                            
-                            ]);>
+                            <p class="text-end">
+                                <span @class([
+                                    'badge',
+                                    'text-bg-success' => !$post->isPublished() ,
+                                    'text-bg-warning' => $post->isPublished() ,
+                                  ]);>
 
-                            {{-- {{ $post->published_at == null ? 'text-bg-warning':'text-bg-success '}}"> --}}
-                              @if ($post->is_published())
-                                Not
-                                  
-                              @endif 
-                                Published
+                                    @if ($post->is_published())
+                                        Not
+                                        
+                                    @endif 
+                                        Published
 
-                            </span>
-                          </p>
+                               </span>
+                            </p>
+
+                            <div class="text-end">
+                                <a href="#" class="badge text-bg-primary" title="View Details">
+                                    <x-icon.show />
+                                </a>
+
+                                <a href="{{ route('dashboard.post.edit', $post->id)  }}" class="badge text-bg-info"
+                                    title="Edit Post">
+                                    <x-icon.edit />
+                                </a>
+
+                                <a href="#" class="badge text-bg-danger" title="Delete Post">
+                                    <x-icon.delete />
+                                </a>
+                          </div>
                         </div>
                         <h5 class = "card-title">{{$post->title }}</h5>
                         <p class = "card-text-end"> Posted By {{ $post->author->name }} </p>

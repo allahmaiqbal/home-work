@@ -24,11 +24,20 @@ class Post extends Model
     } 
     /*== Relationship end here==*/
 
+
    /*== Custom method start here==*/
-   public function is_published():bool
+   public function isPublished():bool
    {
     return $this->published_at == null;
    }
    /*== Custom method end here==*/
 
+
+    /*==Local scop start here== */
+   public function scopePopular($query)
+   {
+       return $query->where('user_id',auth()->id());
+   }
+
+   /*==Local scop end here== */
 }

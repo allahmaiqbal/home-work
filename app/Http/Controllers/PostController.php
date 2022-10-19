@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,9 +20,12 @@ class PostController extends Controller
     //  $posts = Post::query()
     //     ->latest('created_at')
     //     ->paginate();
-        
+        //  return auth()->id();
          $post_query = Post::query();
+         // eager load author
          $post_query->with('author');
+         //Current User Id
+         $post_query->popular();
 
         if(request('orderBy')=== 'oldest'){
             $post_query->oldest('created_at');
@@ -89,7 +93,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+   
+        $post = Post:: findOrFail($id);
+        return view('features.post.edit',compact('post'));
     }
 
     /**
@@ -99,9 +105,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
-        //
+      return  $data = $request->validated();
     }
 
     /**
