@@ -29,20 +29,56 @@ class PostStoreRequest extends FormRequest
             'title' => 'required|string|max:191',
             'content' => 'required|string|max:5000',
             'is_published' => 'required|boolean',
-            'slug'=>'',
-            'published_at'=>'',
-            'user_id'=>''
+         
         ];
 
         
     }
+
+
+     /**
+     * Get the validated data from the request.
+     *
+     * @param  string|null  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public function validated($key = null, $default = null)
+    {
+        $validated = parent::validated();
+
+        // return [
+        //     ...$validated,
+        //     'slug'=>Str::uniqueSlug(post::class,$this->title),
+        //     'published_at'=>$this->boolean('is_published')?now():null,
+        //     'user_id'=>auth()->id(),
+        // ];
+
+        return $validated + [
+            'slug'=>Str::uniqueSlug(post::class,$this->title),
+            'published_at'=>$this->boolean('is_published')?now():null,
+            'user_id'=>auth()->id(),
+        ];
+    }
+    
     protected function prepareForValidation()
     {
-        $this->merge([
-            'slug' => Str::uniqueSlug(Post::class, $this->title, 'slug'),
-            'published_at' => $this->isPublished === '0' ? null : now(),
-            'user_id' => auth()->id(),
-        ]);
+    //    $marge_items = [
+    //     [
+          
+    //         'published_at' => $this->isPublished === '0' ? null : now(),
+    //         'user_id' => auth()->id(),
+    //     ],
+
+    //    ];
+
+        
+    //      if(!empty($this->title)){
+    //         $marge_items['slug'] =  Str::uniqueSlug(Post::class, $this->title, 'slug');
+
+    //      }
+
+    //     $this->merge($marge_items);
     }
 
     // public function messages()

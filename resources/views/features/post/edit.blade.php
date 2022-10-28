@@ -34,8 +34,8 @@
         <div class="mb-3">
             <label for="is-published" class="form-label">Do you want to publish now?</label>
             <select class="form-select" id="is-published" name="is_published"> 
-                <option value="1" @selected($post->isPublished())>Yes</option>
-                <option value="0" @selected(!$post->isPublished())>No</option>
+                 <option value="1" @selected(!$post->isPublished())>Yes</option>
+                <option value="0" @selected($post->isPublished())>No</option>
             </select>
         </div>
 

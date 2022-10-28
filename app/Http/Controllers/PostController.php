@@ -34,7 +34,7 @@ class PostController extends Controller
              $post_query->latest('created_at');
   
         }
-          $posts = $post_query ->paginate();
+          $posts = $post_query ->paginate(6);
 
         return view('features.post.index',compact('posts'));
     }
@@ -58,7 +58,7 @@ class PostController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-        
+         $request->validated();
          $validated_data = $request->validated();
 
         // $validated_data['slug'] = Str::uniqueSlug(Post::class, $request->title, 'slug');
@@ -93,7 +93,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-   
+
+        
         $post = Post:: findOrFail($id);
         return view('features.post.edit',compact('post'));
     }
@@ -107,7 +108,13 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, $id)
     {
-      return  $data = $request->validated();
+    //   return $request->all();
+       $post = Post::findOrFail($id);
+       $post->update($request->validated());
+       return redirect()
+       ->back()
+       ->withSuccess('Post Update Successfully');
+    
     }
 
     /**
@@ -118,6 +125,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return redirect()->back()->withSuccess('Post Delete Successfully');
+
     }
 }

@@ -33,7 +33,7 @@
                                     'text-bg-warning' => $post->isPublished() ,
                                   ]);>
 
-                                    @if ($post->is_published())
+                                    @if ($post->isPublished())
                                         Not
                                         
                                     @endif 
@@ -52,9 +52,15 @@
                                     <x-icon.edit />
                                 </a>
 
-                                <a href="#" class="badge text-bg-danger" title="Delete Post">
-                                    <x-icon.delete />
-                                </a>
+                                 <form action="{{ route('dashboard.post.destroy', $post->id) }}" method="POST"
+                                    class="badge text-bg-danger align-top position-relative"
+                                    onsubmit="return confirm('Are you sure want to delete this post?')">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" title="Delete Post" class="stretched-link">
+                                        <x-icon.delete />
+                                    </button>
+                               </form>
                           </div>
                         </div>
                         <h5 class = "card-title">{{$post->title }}</h5>
@@ -68,35 +74,6 @@
             </div>
 
         @endforeach
-
-        {{-- <div class="col">
-            <div class="card h-100">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This card has even longer content than the first to show that equal height
-                        action.</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
-            </div>
-        </div> --}}
 
     </div>
     <div>
