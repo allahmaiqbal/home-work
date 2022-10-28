@@ -37,12 +37,24 @@ class PostUpdateRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation()
+    // protected function prepareForValidation()
+    // {
+    //     $this->merge([
+    //         // 'published_at' => $this->is_published !== '0' ? now(): null, 
+    //         'published_at'=> $this->boolean('is_published') ? now() : null,
+    //         'slug' => Str::uniqueSlug(Post::class, $this->title, 'slug',$this->route()->post),  
+    //     ]);
+    // }
+
+    public function validated($key = null, $default = null)
     {
-        $this->merge([
-            'published_at' => $this->is_published !== '0' ? now(): null, 
-            'slug' => Str::uniqueSlug(Post::class, $this->title, 'slug'),  
-        ]);
+        $validated = parent::validated();
+
+        return $validated + [
+            'slug'=>Str::uniqueSlug(post::class,$this->title,'slug',$this->route()->post),
+            'published_at'=>$this->boolean('is_published')?now():null,
+         
+        ];
     }
 
     

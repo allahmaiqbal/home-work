@@ -2,8 +2,9 @@
 
 namespace App\Helpers;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class UniqueSlugGenerator
 {
@@ -19,12 +20,24 @@ class UniqueSlugGenerator
      *
      * @return static
      */
-    public static function builder(string $model, string $value, string $column = 'slug'): static
+    public static function builder(
+        string $model, 
+        string $value, 
+        string $column = 'slug',
+        ? int $except = null , 
+        ? string $exceptColumnName = 'id',
+        ): static
     {
-        return new static($model, $value, $column);
+        return new static($model, $value, $column ,$except ,$exceptColumnName);
     }
 
-    public function __construct(protected string $model, protected string $value, protected string $column = 'slug')
+    public function __construct(
+        protected string $model,
+        protected string $value, 
+        protected string $column = 'slug',
+        protected ? int $except= null,
+        protected ? string $exceptColumnName = 'id'
+        )
     {
         $this->slug = Str::slug($value);
     }
@@ -50,6 +63,13 @@ class UniqueSlugGenerator
     {
         $model = new $this->model;
 
+        // if($this->except != null){
+ 
+        //    $model = $model->whereNot($this->exceptColumnName,$this->except);
+        // }
+      
+      
+
         if ($attempt > 1) {
             $slug = $this->slug . '-' . $attempt;
         } else {
@@ -57,7 +77,16 @@ class UniqueSlugGenerator
         }
 
         $is_exists = $model->where($this->column, $slug)
-            ->exists();
+        // ->when($this->except != null ,function($query)
+        // {
+        //     $query->whereNot($this->exceptColumnName,$this->except);
+
+        // }
+
+        ->when($this->except ,fn(Builder $query):Builder=> $query->whereNot($this->exceptColumnName,$this->except))
+        // ->toSql();
+        // dd($is_exists);
+        ->exists();
 
         if (!$is_exists) {
             return $slug;
