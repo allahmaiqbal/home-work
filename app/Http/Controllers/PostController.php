@@ -17,26 +17,24 @@ class PostController extends Controller
      */
     public function index()
     {
-    //  $posts = Post::query()
-    //     ->latest('created_at')
-    //     ->paginate();
+        //  $posts = Post::query()
+        //     ->latest('created_at')
+        //     ->paginate();
         //  return auth()->id();
-         $post_query = Post::query();
-         // eager load author
-         $post_query->with('author');
-         //Current User Id
-         $post_query->popular();
+        $post_query = Post::query();
+        // eager load author
+        $post_query->with('author');
+        //Current User Id
+        $post_query->popular();
 
-        if(request('orderBy')=== 'oldest'){
+        if (request('orderBy') === 'oldest') {
             $post_query->oldest('created_at');
-
-        }else{
-             $post_query->latest('created_at');
-  
+        } else {
+            $post_query->latest('created_at');
         }
-          $posts = $post_query ->paginate(6);
+        $posts = $post_query->paginate(6);
 
-        return view('features.post.index',compact('posts'));
+        return view('features.post.index', compact('posts'));
     }
 
     /**
@@ -58,20 +56,12 @@ class PostController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-         $request->validated();
-         $validated_data = $request->validated();
-
-        // $validated_data['slug'] = Str::uniqueSlug(Post::class, $request->title, 'slug');
-
-        // $validated_data['published_at'] = $request->is_published === '0' ? null : now();
-
-        // $validated_data['user_id'] = auth()->id();
-
+        $request->validated();
+        $validated_data = $request->validated();
         Post::create($validated_data);
-
         return redirect()
-               ->back()
-               ->with('Post Created Successfully');
+            ->back()
+            ->withSuccess('Post Created Successfully');
     }
 
     /**
@@ -80,9 +70,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('features.post.show', compact('post'));
     }
 
     /**
@@ -91,12 +81,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-
-        
-        $post = Post:: findOrFail($id);
-        return view('features.post.edit',compact('post'));
+        return view('features.post.edit', compact('post'));
     }
 
     /**
@@ -108,13 +95,12 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, $id)
     {
-    //   return $request->all();
-       $post = Post::findOrFail($id);
-       $post->update($request->validated());
-       return redirect()
-       ->back()
-       ->withSuccess('Post Update Successfully');
-    
+        $post = Post::findOrFail($id);
+        $post->update($request->validated());
+
+        return redirect()
+            ->back()
+            ->withSuccess('Post Update Successfully');
     }
 
     /**
@@ -123,11 +109,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::findOrFail($id);
         $post->delete();
         return redirect()->back()->withSuccess('Post Delete Successfully');
-
     }
 }
