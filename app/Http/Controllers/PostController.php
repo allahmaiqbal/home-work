@@ -93,13 +93,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostUpdateRequest $request, $id)
+    public function update(PostUpdateRequest $request, Post $post)
     {
-        $post = Post::findOrFail($id);
         $post->update($request->validated());
-
         return redirect()
-            ->back()
+            ->route('dashboard.post.index')
             ->withSuccess('Post Update Successfully');
     }
 

@@ -19,7 +19,7 @@
     </div>
     @endif
 
-    <form action="{{ route('dashboard.post.update',$post->id) }}" method="POST">
+    <form action="{{ route('dashboard.post.update',$post->slug) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">
