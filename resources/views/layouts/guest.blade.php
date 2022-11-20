@@ -9,16 +9,17 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Google Font: Source Sans Pro -->
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+        rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ Vite::template('plugins/fontawesome-free/css/all.min.css') }}">
+    <link href="{{ Vite::template('plugins/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{ Vite::template('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link href="{{ Vite::template('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}" rel="stylesheet">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ Vite::template('dist/css/adminlte.min.css') }}">
+    <link href="{{ Vite::template('dist/css/adminlte.min.css') }}" rel="stylesheet">
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js']) --}}
+    @vite(['resources/sass/app.scss'])
 
 </head>
 
