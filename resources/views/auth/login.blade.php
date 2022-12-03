@@ -14,7 +14,7 @@
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="mb-3">
-                        <div class="input-group is-invalid">
+                        {{-- <div class="input-group is-invalid">
                             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                                 value="{{ old('email') }}" placeholder=" Email">
                             <div class="input-group-append">
@@ -26,11 +26,12 @@
                             <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}
                             </span>
                             @enderror
-                        </div>
+                        </div> --}}
+                        <x-form.input-group name='email' type='email' icon='fas fa-envelope'/>
                     </div>
 
                     <div class="mb-3">
-                        <div class="input-group is-invalid">
+                        {{-- <div class="input-group is-invalid">
                             <input type="password" name="password"
                                 class="form-control @error('email') is-invalid @enderror" placeholder="Password">
                             <div class="input-group-append">
@@ -42,7 +43,8 @@
                         @error('password')
                         <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}
                         </span>
-                        @enderror
+                        @enderror --}}
+                        <x-form.input-group name='password' type='password' icon='fas fa-lock'/>
                     </div>
                     <div class="row">
                         <div class="col-8">
