@@ -27,7 +27,7 @@
                             </span>
                             @enderror
                         </div> --}}
-                        <x-form.input-group name='email' type='email' icon='fas fa-envelope'/>
+                        <x-form.input-group name='email' type='email' icon='fas fa-envelope' icon_position="start"/>
                     </div>
 
                     <div class="mb-3">
