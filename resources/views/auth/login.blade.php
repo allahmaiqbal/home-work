@@ -1,6 +1,94 @@
 <x-guest-layout>
 
-    <div class="row">
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a href="{{ url('/') }}" class="h1">
+                    <x-common.site-name-gust name="allahma iqbal"/>
+                </a>
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <form action="{{ route('login') }}" method="post">
+                    @csrf
+                    <div class="mb-3">
+                        {{-- <div class="input-group is-invalid">
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                                value="{{ old('email') }}" placeholder=" Email">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                            @error('email')
+                            <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}
+                            </span>
+                            @enderror
+                        </div> --}}
+                        <x-form.input-group name='email' type='email' icon='fas fa-envelope' icon_position="start"/>
+                    </div>
+
+                    <div class="mb-3">
+                        {{-- <div class="input-group is-invalid">
+                            <input type="password" name="password"
+                                class="form-control @error('email') is-invalid @enderror" placeholder="Password">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @error('password')
+                        <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}
+                        </span>
+                        @enderror --}}
+                        <x-form.input-group name='password' type='password' icon='fas fa-lock'/>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <div class="social-auth-links text-center mt-2 mb-3">
+                    <a href="#" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    </a>
+                </div>
+                <!-- /.social-auth-links -->
+
+                <p class="mb-1">
+                    <a href="forgot-password.html">I forgot my password</a>
+                </p>
+                @if(Route::has('register'))
+                <p class="mb-0">
+                    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+                </p>
+                @endif
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+
+    {{-- <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header text-center fw-semibold fs-2">
@@ -46,7 +134,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
     {{-- <x-auth-card>
