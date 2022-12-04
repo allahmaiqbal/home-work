@@ -39,6 +39,7 @@
 </div>
 
 {{-- <div class="input-group is-invalid">
+
     <input type="{{ $type }}" name="{{ $name }}" class="form-control @error($name) is-invalid @enderror"
         value="{{ old($name) }}" placeholder="{{ $placeholder }}">
     <div class="input-group-prepend">
