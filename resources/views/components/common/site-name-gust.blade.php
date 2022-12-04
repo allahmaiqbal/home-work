@@ -1,10 +1,10 @@
 @props([
-   'name'=> config('app.name')
+    'name' => config('app.name'),
 ])
 
-@if (count(explode(' ',$name))>1)
-    <b>{{ Str::beforeLast($name, ' ')}}</b>
-    {{ Str::of($name)->afterLast(' ')->upper()}}
+@if (count(explode(' ', $name)) > 1)
+    <b>{{ Str::beforeLast($name, ' ') }}</b>
+    {{ Str::of($name)->afterLast(' ')->upper() }}
 @else
-   <b>{{ $name }}</b>
+    <b>{{ $name }}</b>
 @endif

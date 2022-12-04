@@ -5,7 +5,7 @@
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 <a href="{{ url('/') }}" class="h1">
-                    <x-common.site-name-gust name="allahma iqbal"/>
+                    <x-common.site-name-gust name="allahma iqbal" />
                 </a>
             </div>
             <div class="card-body">
@@ -27,7 +27,8 @@
                             </span>
                             @enderror
                         </div> --}}
-                        <x-form.input-group name='email' type='email' icon='fas fa-envelope' icon_position="start"/>
+                        <x-form.input-group name='email' type='email' icon='fas fa-envelope'
+                            icon_position="start" />
                     </div>
 
                     <div class="mb-3">
@@ -44,7 +45,7 @@
                         <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}
                         </span>
                         @enderror --}}
-                        <x-form.input-group name='password' type='password' icon='fas fa-lock'/>
+                        <x-form.input-group name='password' type='password' icon='fas fa-lock' />
                     </div>
                     <div class="row">
                         <div class="col-8">
@@ -76,10 +77,10 @@
                 <p class="mb-1">
                     <a href="forgot-password.html">I forgot my password</a>
                 </p>
-                @if(Route::has('register'))
-                <p class="mb-0">
-                    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
-                </p>
+                @if (Route::has('register'))
+                    <p class="mb-0">
+                        <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+                    </p>
                 @endif
 
             </div>
@@ -120,7 +121,7 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
 
-                    @if(Route::has('register'))
+                    @if (Route::has('register'))
                     <div class="text-center">
                         <p>
                             Not yet registered?

@@ -1,12 +1,11 @@
 @props([
     'name',
-    'type'=>'text',
-    'placeholder'=>Str::of($name)
+    'type' => 'text',
+    'placeholder' => Str::of($name)
         ->replace('_', ' ')
         ->title(),
-    'icon'=>"",
-    'icon_position'=>"end"
-
+    'icon' => '',
+    'icon_position' => 'end',
 ])
 
 <div>
@@ -52,4 +51,3 @@
     </span>
     @enderror
 </div> --}}
-
