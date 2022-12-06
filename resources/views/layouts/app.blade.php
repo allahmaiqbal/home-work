@@ -18,10 +18,10 @@
 <body>
 
     @include('layouts.navigation')
-    @if(session()->has('success'))
-    <div class="container mt-2">
-        <x-common.alert type="success" :message="session('success', 'This is default message')" />
-    </div>
+    @if (session()->has('success'))
+        <div class="container mt-2">
+            <x-common.alert type="success" :message="session('success', 'This is default message')" />
+        </div>
     @endif
     <div class="container">
         {{ $slot }}

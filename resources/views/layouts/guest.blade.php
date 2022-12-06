@@ -44,12 +44,8 @@
         'resources/assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js', // bootstrap
         'resources/assets/template/dist/js/adminlte.min.js', // adminlte
     ])
-    {{--
-    <!-- jQuery -->
-    <script src="{{ Vite::template('plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ Vite::template('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ Vite::template('dist/js/adminlte.min.js') }}"></script> --}}
+    <script src="{{ Vite::asset('resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+
+    @stack('script')
 
 </html>

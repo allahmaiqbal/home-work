@@ -17,6 +17,7 @@ export default defineConfig({
 
                 "resources/assets/template/plugins/jquery/jquery.min.js",
                 "resources/assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js",
+                "resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js",
                 "resources/assets/template/dist/js/adminlte.min.js",
             ],
             refresh: true,
