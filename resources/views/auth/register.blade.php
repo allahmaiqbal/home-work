@@ -3,7 +3,7 @@
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 <a href="{{ url('/') }}" class="h1">
-                    <x-common.site-name-gust name="allahma iqbal" />
+                    <x-common.site-name-gust />
                 </a>
             </div>
             <div class="card-body">
@@ -13,38 +13,48 @@
                     @csrf
 
                     <div class="mb-3">
-                        <x-form.input-group name="name" icon="fas fa-user" placeholder="Full name" />
+                        <x-form.input-group name="name" icon="fas fa-user" placeholder="Full name" required />
                     </div>
 
                     <div class="mb-3">
-                        <x-form.input-group name="email" type="email" icon="fas fa-envelope" />
+                        <x-form.input-group name="email" type="email" icon="fas fa-envelope" required />
                     </div>
 
                     <div class="mb-3">
-                        <x-form.input-group name="phone" icon="fas fa-phone" />
+                        <x-form.input-group name="phone" icon="fas fa-phone" required />
                     </div>
 
                     <div class="mb-3">
-                        <x-form.input-group name="password" type="password" icon="fas fa-lock" />
+                        <x-form.input-group name="password" type="password" icon="fas fa-lock" required />
                     </div>
 
                     <div class="mb-3">
                         <x-form.input-group name="password_confirmation" type="password" icon="fas fa-lock"
-                            placeholder="Retype password" />
+                            placeholder="Retype password" required />
                     </div>
 
                     <div class="row">
                         <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="agreeTerms" name="terms">
+                            <div class="icheck-primary @error('terms') is-invalid @enderror">
+                                <input type="checkbox" id="agreeTerms" name="terms" @checked(old('terms'))>
                                 <label for="agreeTerms">
                                     I agree to the <a href="#">terms</a>
                                 </label>
                             </div>
+                            @error('terms')
+                                <div class="error invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
+
+                        <div class="error invalid-feedback">
+                            <p>where isd</p>
+                        </div>
+
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            <x-form.button block primary>Register</x-form.button>
                         </div>
                         <!-- /.col -->
                     </div>
