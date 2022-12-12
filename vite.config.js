@@ -3,6 +3,9 @@ import { defineConfig } from "vite";
 import legacy from "@vitejs/plugin-legacy";
 
 export default defineConfig({
+    build: {
+        assetsInlineLimit: "2048", // 2kb
+    },
     plugins: [
         legacy({
             targets: ["defaults", "not IE 11"],
@@ -12,12 +15,14 @@ export default defineConfig({
                 "resources/assets/template/plugins/fontawesome-free/css/all.min.css",
                 "resources/assets/template/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
                 "resources/assets/template/dist/css/adminlte.min.css",
+                "resources/js/static_assets.js",
 
                 "resources/assets/template/plugins/jquery/jquery.min.js",
                 "resources/assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js",
                 "resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js",
                 "resources/assets/template/dist/js/adminlte.min.js",
-                "resources/js/test.js",
+                "resources/assets/template/dist/js/demo.js",
+                // "resources/js/test.js",
             ],
             refresh: true,
         }),

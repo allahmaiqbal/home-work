@@ -31,8 +31,7 @@
 ])>
     {{ $slot }}
 
-
-      @if (session()->has('status'))
+    @if (session()->has('status'))
         {{--  'password.update', 'password.email' --}}
         <x-common.toast :message="session('status', 'Action has been taken.')" type="success" :autoHide="Route::is('login')" />
     @endif
@@ -44,10 +43,6 @@
         'resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js',// sweetalert
         // 'resources/js/test.js',
     ])
-    {{-- <script type="module" src="{{ Vite::asset('resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
-
-    <script type="module" src="{{ Vite::asset('resources/js/test.js') }}" defer > --}}
-
     @stack('script')
 
 </html>

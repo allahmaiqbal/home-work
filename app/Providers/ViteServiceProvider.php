@@ -24,6 +24,7 @@ class ViteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Vite::macro('template', fn ($asset) => $this->asset("resources/assets/template/{$asset}"));
         // conditional add attribute in assets
         Vite::useScriptTagAttributes(function (string $src, string $url, array | null $chunk, array | null $manifest) {
 
