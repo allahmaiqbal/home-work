@@ -8,17 +8,6 @@
             </div>
             <div class="card-body">
                 <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
-
-                @if (session()->has('status'))
-                    <div class="container mt-2">
-                        <x-common.alert type="success" :message="session('status', 'This is default message')" />
-                    </div>
-                @endif
-
-                {{-- <button type="button" class="btn btn-success swalDefaultSuccess">
-                    Launch Success Toast
-                </button> --}}
-
                 <form action="{{ route('password.email') }}" method="post">
                     @csrf
                     <div class="mb-3">

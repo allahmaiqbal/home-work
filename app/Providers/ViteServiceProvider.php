@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\Facades\Vite;
+use Illuminate\Support\ServiceProvider;
+
+class ViteServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        // conditional add attribute in assets
+        Vite::useScriptTagAttributes(function (string $src, string $url, array | null $chunk, array | null $manifest) {
+
+            // for sweet alert 2
+            if ($src === 'resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js') {
+
+                return [
+                    'type' => ($chunk == null && $manifest == null) // if development server is running
+                        ?
+                        ''
+                        :
+                        'module',
+                ];
+            }
+
+            return [];
+        });
+    }
+}

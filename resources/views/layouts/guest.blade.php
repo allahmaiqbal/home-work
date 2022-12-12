@@ -11,15 +11,7 @@
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    {{--
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ Vite::template('plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{ Vite::template('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ Vite::template('dist/css/adminlte.min.css') }}"> --}}
-    <!-- Scripts -->
-    {{-- @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js']) --}}
+
     @vite([
         'resources/assets/template/plugins/fontawesome-free/css/all.min.css', //fontawesome
         'resources/assets/template/plugins/icheck-bootstrap/icheck-bootstrap.min.css', //icheck
@@ -39,12 +31,22 @@
 ])>
     {{ $slot }}
 
+
+      @if (session()->has('status'))
+        {{--  'password.update', 'password.email' --}}
+        <x-common.toast :message="session('status', 'Action has been taken.')" type="success" :autoHide="Route::is('login')" />
+    @endif
+
     @vite([
         'resources/assets/template/plugins/jquery/jquery.min.js', // jqery
         'resources/assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js', // bootstrap
         'resources/assets/template/dist/js/adminlte.min.js', // adminlte
+        'resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js',// sweetalert
+        // 'resources/js/test.js',
     ])
-    <script src="{{ Vite::asset('resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    {{-- <script type="module" src="{{ Vite::asset('resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+
+    <script type="module" src="{{ Vite::asset('resources/js/test.js') }}" defer > --}}
 
     @stack('script')
 
