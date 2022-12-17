@@ -9,7 +9,10 @@
           <i class="nav-icon fas {{ $icon }}"></i>
           <p>
               {{ $name }}
-              <i class="right fas fa-angle-left"></i>
+              @if ($slot->isNotEmpty())
+                <i class="right fas fa-angle-left"></i>
+              @endif
+
           </p>
       </a>
       @if ($slot->isNotEmpty())
