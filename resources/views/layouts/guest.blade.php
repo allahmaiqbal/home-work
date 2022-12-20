@@ -26,21 +26,22 @@
     'login-page' =>
         Route::is('login') or
         Route::is('password.request') or
-        Route::is('password.reset'),
+        Route::is('password.reset') or
+        Route::is('root'),
     'register-page' => Route::is('register'),
 ])>
     {{ $slot }}
 
     @if (session()->has('status'))
         {{--  'password.update', 'password.email' --}}
-        <x-common.toast :message="session('status', 'Action has been taken.')" type="success" :autoHide="Route::is('login')" />
+        <x-common.toast :message="session('status', 'Action has been taken.')" type="success" :autoHide="Route::is('login') or Route::is('root')" />
     @endif
 
     @vite([
         'resources/assets/template/plugins/jquery/jquery.min.js', // jqery
         'resources/assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js', // bootstrap
         'resources/assets/template/dist/js/adminlte.min.js', // adminlte
-        'resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js',// sweetalert
+        'resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js', // sweetalert
         // 'resources/js/test.js',
     ])
     @stack('script')

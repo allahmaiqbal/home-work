@@ -20,6 +20,10 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
+    @if (session()->has('success'))
+        {{--  'password.update', 'password.email' --}}
+        <x-common.toast :message="session('success', 'Action has been taken.')" type="success" :autoHide />
+    @endif
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -70,8 +74,10 @@
         'resources/assets/template/plugins/jquery/jquery.min.js', // jQuery
         'resources/assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js', // Bootstrap 4
         'resources/assets/template/dist/js/adminlte.min.js', // AdminLTE App
+        'resources/assets/template/plugins/sweetalert2/sweetalert2.all.min.js', // sweetalert
         'resources/assets/template/dist/js/demo.js', // AdminLTE for demo purposes
     ])
+    @stack('script')
 </body>
 
 

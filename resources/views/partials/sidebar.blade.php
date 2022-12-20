@@ -7,26 +7,46 @@
       </a>
 
       <!-- Sidebar -->
-        <div class="sidebar">
+      <div class="sidebar">
           <!-- Sidebar user (optional) -->
 
-            <div class="user-panel d-flex align-items-center mt-3 mb-3 pb-3">
-                <div class="image">
-                    <img src="{{ Vite::template('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                        alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">{{ auth()->user()->name }}</a>
-                    <form action="{{ route('logout') }}" method="POST"
-                        onsubmit="return confirm('Are you sure want to sign out?')">
-                        @csrf
-                        <button type="submit" class="btn btn-xs btn-outline-info">
-                            <i class="fas fa-sign-out-alt"></i>
-                            Sign Out
-                        </button>
-                    </form>
-                </div>
-           </div>
+          <div class="user-panel d-flex align-items-center mt-3 mb-3 pb-3">
+              <div class="image">
+                  <img src="{{ Vite::template('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                      alt="User Image">
+              </div>
+
+              <div class="info">
+                  <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+                  <form id="logout-from" action="{{ route('logout') }}" method="POST">
+                      @csrf
+                      <button type="button" id="logout-btn" class="btn btn-xs btn-outline-info">
+                          <i class="fas fa-sign-out-alt"></i>
+                          Sign Out
+                      </button>
+
+                      @push('script')
+                          <script>
+                              const logoutForm = document.querySelector('#logout-from')
+                              const logoutBtn = document.querySelector('#logout-btn')
+                              logoutBtn.addEventListener('click', function(event) {
+                                  event.preventDefault()
+                                  Swal.fire({
+                                      title: 'Are you sure want to sign out?',
+                                      showCancelButton: true,
+                                      confirmButtonText: 'Yes',
+                                      cancelButtonText: `No`,
+                                  }).then((result) => {
+                                      if (result.isConfirmed) {
+                                          logoutForm.submit();
+                                      }
+                                  })
+                              })
+                          </script>
+                      @endpush
+                  </form>
+              </div>
+          </div>
 
           <!-- SidebarSearch Form -->
           <div class="form-inline">
@@ -41,13 +61,13 @@
               </div>
           </div>
           <!-- Sidebar Menu -->
-            <x-sidebar class="mt-2">
-             <x-sidebar.item name='Dashboard'>
-                    <x-sidebar.sub-item name='Dashboard' :to="route('dashboard.index')" />
-                    <x-sidebar.sub-item name='Dashboard' :to="route('dashboard.index')" />
-                    <x-sidebar.sub-item name='Dashboard' :to="route('dashboard.index')" />
-            </x-sidebar.item>
-           </x-sidebar>
+          <x-sidebar class="mt-2">
+              <x-sidebar.item name='Dashboard' :isActive="route('dashboard.index')" :to="route('dashboard.index')" />
+              <x-sidebar.item name='Post' icon="fa fa-clipboard" :isActive="route('dashboard.post.index')" :to="route('dashboard.post.index')">
+                  <x-sidebar.sub-item name='index' :isActive="route('dashboard.post.index')" :to="route('dashboard.post.index')" />
+                  <x-sidebar.sub-item name='create' :isActive="route('dashboard.post.create')" :to="route('dashboard.post.create')" />
+              </x-sidebar.item>
+          </x-sidebar>
           <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
