@@ -1,15 +1,16 @@
-     @props([
-    'name', //name
-    'icon' => 'far fa-circle', //icon
-    'to' => '#', //url link
-    'isActive' => true,
+ @props([
+    'name', //all sub item name
+    'icon' => 'far fa-circle', // all item icon
+    'to' => '#', // url
+    'isActive' => false, // item is active or /not
 ])
-     <li class="nav-item">
-         <a href="{{ $to }}" @class([
-             'nav-link', //common class
-             'active' => $isActive, //current value active or/not
-         ])>
-             <i class="{{ $icon }} nav-icon"></i>
-             <p>{{ $name }}</p>
-         </a>
-     </li>
+
+ <li class="nav-item">
+     <a href="{{ $to }}" @class([
+         'nav-link', // common all classes
+         'active' => $isActive, // current item is active or/ not
+     ])>
+         <i class="nav-icon {{ $icon }}"></i>
+         <p>{{ $name }}</p>
+     </a>
+ </li>

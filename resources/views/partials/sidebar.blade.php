@@ -62,10 +62,18 @@
           </div>
           <!-- Sidebar Menu -->
           <x-sidebar class="mt-2">
-              <x-sidebar.item name='Dashboard' :isActive="route('dashboard.index')" :to="route('dashboard.index')" />
-              <x-sidebar.item name='Post' icon="fa fa-clipboard" :isActive="route('dashboard.post.index')" :to="route('dashboard.post.index')">
-                  <x-sidebar.sub-item name='index' :isActive="route('dashboard.post.index')" :to="route('dashboard.post.index')" />
-                  <x-sidebar.sub-item name='create' :isActive="route('dashboard.post.create')" :to="route('dashboard.post.create')" />
+              <x-sidebar.item name="Dashboard" icon="fas fa-tachometer-alt" :isActive="Route::is('dashboard.index')" :to="route('dashboard.index')" />
+              <x-sidebar.item name="Post" icon="far fa-clipboard" :isActive="Route::is('dashboard.post.index') or Route::is('dashboard.post.create')">
+                  <x-sidebar.item name="Create " :to="route('dashboard.post.create')" :isActive="Route::is('dashboard.post.create')" />
+                  <x-sidebar.item name="View" :to="route('dashboard.post.index')" :isActive="Route::is('dashboard.post.index')">
+                      <x-sidebar.item name="one" />
+                      <x-sidebar.item name="two" />
+                      <x-sidebar.item name="three" />
+                      {{-- <x-sidebar.item name="more">
+                          <x-sidebar.item name="four" />
+                      </x-sidebar.item name="more"> --}}
+                  </x-sidebar.item>
+
               </x-sidebar.item>
           </x-sidebar>
           <!-- /.sidebar-menu -->
