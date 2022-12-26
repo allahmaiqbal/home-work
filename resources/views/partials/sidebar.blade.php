@@ -68,7 +68,7 @@
                   <x-sidebar.item name="View" :to="route('dashboard.post.index')" :isActive="Route::is('dashboard.post.index')">
                       <x-sidebar.item name="one" />
                       <x-sidebar.item name="two" />
-                      <x-sidebar.item name="three" />
+                      <x-sidebar.item  />
                       {{-- <x-sidebar.item name="more">
                           <x-sidebar.item name="four" />
                       </x-sidebar.item name="more"> --}}

@@ -196,6 +196,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
         App\Providers\ViteServiceProvider::class,
+        App\providers\DirectiveServiceProvider::class,
 
     ],
 

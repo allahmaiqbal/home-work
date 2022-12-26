@@ -7,11 +7,17 @@
 
 
 
-@empty($name)
+{{-- @empty($name)
     @php
         throw new Exception('Name prop is required');
     @endphp
-@endempty
+@endempty --}}
+
+{{-- Custom directive --}}
+ @propsValidation([
+    empty($name) => 'Name is required',
+    !is_bool($isActive) => 'Is active should be a boolean.',
+ ])
 
 <li @class([
     'nav-item', //  all common class
