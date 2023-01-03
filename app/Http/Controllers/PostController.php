@@ -17,10 +17,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        //  $posts = Post::query()
-        //     ->latest('created_at')
-        //     ->paginate();
-        //  return auth()->id();
         $post_query = Post::query();
         // eager load author
         $post_query->with('author');

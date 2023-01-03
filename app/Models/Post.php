@@ -18,6 +18,9 @@ class Post extends Model
         'content',
         'published_at',
     ];
+     protected $casts = [
+        'published_at' => 'immutable_datetime',
+    ];
 
     /*== Relationship start here ==*/
     public function author(): BelongsTo

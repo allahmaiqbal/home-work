@@ -197,6 +197,7 @@ return [
         App\Providers\MacroServiceProvider::class,
         App\Providers\ViteServiceProvider::class,
         App\providers\DirectiveServiceProvider::class,
+        App\Providers\PaginationServiceProvider::class,
 
     ],
 
