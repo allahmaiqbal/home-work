@@ -66,7 +66,7 @@
             </div>
         @endif
 
-        <div class="card-footer">
+        {{-- <div class="card-footer">
             @unless($post->count())
                 <div class="text-center">You have not posted yet</div>
             @endunless
@@ -74,7 +74,7 @@
             <div class="float-right">
                 {{ $posts->links() }}
             </div>
-        </div>
+        </div> --}}
         <!-- /.card-body -->
     </div>
 </x-app-layout>
