@@ -1,5 +1,6 @@
-@section('page-name', 'Post')
-@section('title', 'Post List')
+@section('title', 'Post list')
+@section('page_name', 'Post')
+
 <x-app-layout>
     <div class="card">
         <div class="card-header">
@@ -66,15 +67,15 @@
             </div>
         @endif
 
-        {{-- <div class="card-footer">
-            @unless($post->count())
+        <div class="card-footer">
+            @unless($posts->count())
                 <div class="text-center">You have not posted yet</div>
             @endunless
 
             <div class="float-right">
                 {{ $posts->links() }}
             </div>
-        </div> --}}
+        </div>
         <!-- /.card-body -->
     </div>
 </x-app-layout>

@@ -18,7 +18,8 @@ class Post extends Model
         'content',
         'published_at',
     ];
-     protected $casts = [
+
+    protected $casts = [
         'published_at' => 'immutable_datetime',
     ];
 

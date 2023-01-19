@@ -1,5 +1,5 @@
 <x-app-layout>
-   <div class="card">
+    <div class="card">
         <form action="{{ route('dashboard.post.store') }}" method="post">
             @csrf
             <div class="card-header">
@@ -14,40 +14,27 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                        name="title" placeholder="Enter post title">
+                    <x-form.input id="title" name="title" placeholder="Enter post title"
+                        value="{{ old('title') }}" />
                 </div>
 
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content"
-                        placeholder="Enter post content" rows="3"></textarea>
+                    <x-form.input type="textarea" id="content" name="content" placeholder="Enter post content"
+                        rows="3" value="{{ old('content') }}" />
                 </div>
 
                 <div class="form-group">
                     <label class="mr-2" for="publish-now">Do you want to publish now?</label>
-                    <input type="checkbox" name="my-checkbox" checked data-on-text="Yes" data-off-text="No"
-                        data-bootstrap-switch data-off-color="danger" data-on-color="success" id="publish-now">
+                    <input type="checkbox" name="is_published" checked data-on-text="Yes" data-off-text="No"
+                        value="1" data-bootstrap-switch data-off-color="danger" data-on-color="success"
+                        id="publish-now">
                 </div>
-                {{--
-                    TODO: Next Class begin from here
-                    --}}
-
-                <div class="mb-3">
-                    <label for="is-published" class="form-label">Do you want to publish now?</label>
-                    <select class="form-select @error('is_published') is-invalid @enderror" id="is-published "
-                        name="is_published">
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                    {{-- <x-common.form-validation-error-message name="is_published" /> --}}
-                </div>
-
             </div>
             <!-- /.card-body -->
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Save</button>
+                <x-form.button>Save</x-button>
             </div>
             <!-- /.card-footer -->
         </form>

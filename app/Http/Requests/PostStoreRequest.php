@@ -28,15 +28,12 @@ class PostStoreRequest extends FormRequest
         return [
             'title' => 'required|string|max:191',
             'content' => 'required|string|max:5000',
-            'is_published' => 'required|boolean',
-         
+            'is_published' => 'nullable|boolean',
         ];
-
-        
     }
 
 
-     /**
+    /**
      * Get the validated data from the request.
      *
      * @param  string|null  $key
@@ -55,37 +52,37 @@ class PostStoreRequest extends FormRequest
         // ];
 
         return $validated + [
-            'slug'=>Str::uniqueSlug(post::class,$this->title),
-            'published_at'=>$this->boolean('is_published')?now():null,
-            'user_id'=>auth()->id(),
+            'slug' => Str::uniqueSlug(post::class, $this->title),
+            'published_at' => $this->boolean('is_published') ? now() : null,
+            'user_id' => auth()->id(),
         ];
     }
-    
+
     protected function prepareForValidation()
     {
-    //    $marge_items = [
-    //     [
-          
-    //         'published_at' => $this->isPublished === '0' ? null : now(),
-    //         'user_id' => auth()->id(),
-    //     ],
+        //    $marge_items = [
+        //     [
 
-    //    ];
+        //         'published_at' => $this->isPublished === '0' ? null : now(),
+        //         'user_id' => auth()->id(),
+        //     ],
 
-        
-    //      if(!empty($this->title)){
-    //         $marge_items['slug'] =  Str::uniqueSlug(Post::class, $this->title, 'slug');
+        //    ];
 
-    //      }
 
-    //     $this->merge($marge_items);
+        //      if(!empty($this->title)){
+        //         $marge_items['slug'] =  Str::uniqueSlug(Post::class, $this->title, 'slug');
+
+        //      }
+
+        //     $this->merge($marge_items);
     }
 
     // public function messages()
     // {
     //     return [
-    //         'title.required' => 'Title must be needed', 
-            
+    //         'title.required' => 'Title must be needed',
+
     //     ];
     // }
 

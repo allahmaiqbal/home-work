@@ -26,23 +26,23 @@ class PostUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-        
+
             'title' => 'required|string|max:191',
             'content' => 'required|string|max:5000',
             'is_published' => 'required|boolean',
             'slug' => '',
             'published_at' => '',
-            
-           
+
+
         ];
     }
 
     // protected function prepareForValidation()
     // {
     //     $this->merge([
-    //         // 'published_at' => $this->is_published !== '0' ? now(): null, 
+    //         // 'published_at' => $this->is_published !== '0' ? now(): null,
     //         'published_at'=> $this->boolean('is_published') ? now() : null,
-    //         'slug' => Str::uniqueSlug(Post::class, $this->title, 'slug',$this->route()->post),  
+    //         'slug' => Str::uniqueSlug(Post::class, $this->title, 'slug',$this->route()->post),
     //     ]);
     // }
 
@@ -51,12 +51,9 @@ class PostUpdateRequest extends FormRequest
         $validated = parent::validated();
 
         return $validated + [
-            'slug'=>Str::uniqueSlug(post::class,$this->title,'slug',$this->route()->post),
-            'published_at'=>$this->boolean('is_published')?now():null,
-         
+            'slug' => Str::uniqueSlug(post::class, $this->title, 'slug', $this->route()->post),
+            'published_at' => $this->boolean('is_published') ? now() : null,
+
         ];
     }
-
-    
-
 }
